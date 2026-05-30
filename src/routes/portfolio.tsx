@@ -69,8 +69,21 @@ function PortfolioPage() {
             <Reveal key={p.title}>
               <article className={`grid lg:grid-cols-2 gap-12 items-center ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
                 <a href={p.url} target="_blank" rel="noreferrer" className="block group">
-                  <div className="relative aspect-[16/10] rounded-3xl overflow-hidden border border-border shadow-elegant">
-                    <img src={p.img} alt={`${p.title} project preview`} loading="lazy" width={1280} height={800} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+                  <div
+                    className={`relative aspect-[16/10] rounded-3xl overflow-hidden border border-border shadow-elegant ${
+                      p.title === "The Victoria O." ? "p-3" : ""
+                    }`}
+                  >
+                    <img
+                      src={p.img}
+                      alt={`${p.title} project preview`}
+                      loading="lazy"
+                      width={1280}
+                      height={800}
+                      className={`w-full h-full transition duration-700 group-hover:scale-105 ${
+                        p.title === "The Victoria O." ? "object-contain rounded-2xl" : "object-cover"
+                      }`}
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent" />
                   </div>
                 </a>

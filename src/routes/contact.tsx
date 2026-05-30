@@ -22,8 +22,15 @@ function ContactPage() {
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     // Frontend-only: hook this up to a server fn or email service later.
     setSent(true);
+
+    // Clear all form fields
+    e.currentTarget.reset();
+
+    // Reset "sent" state after 5 seconds so the form can be reused
+    setTimeout(() => setSent(false), 5000);
   };
 
   return (
@@ -78,12 +85,12 @@ function ContactPage() {
               <p className="text-sm text-muted-foreground mb-4">I respond within 24 hours on business days.</p>
 
               <div className="grid md:grid-cols-2 gap-5">
-                <Field label="Name"><input required className={inputCls} placeholder="Your name" /></Field>
-                <Field label="Email"><input required type="email" className={inputCls} placeholder="you@brand.com" /></Field>
+                <Field label="Name"><input required className={inputCls} placeholder="Your name" name="name" /></Field>
+                <Field label="Email"><input required type="email" className={inputCls} placeholder="you@brand.com" name="email" /></Field>
               </div>
-              <Field label="Website (optional)"><input className={inputCls} placeholder="https://" /></Field>
+              <Field label="Website (optional)"><input className={inputCls} placeholder="https://" name="website" /></Field>
               <Field label="What do you need help with?">
-                <select className={inputCls} defaultValue="">
+                <select className={inputCls} defaultValue="" name="service">
                   <option value="" disabled>Select a service</option>
                   <option>SEO Audit</option>
                   <option>Technical SEO</option>
@@ -93,7 +100,7 @@ function ContactPage() {
                   <option>Other</option>
                 </select>
               </Field>
-              <Field label="Message"><textarea required rows={5} className={inputCls} placeholder="Tell me a bit about your project, goals, and timeline…" /></Field>
+              <Field label="Message"><textarea required rows={5} className={inputCls} placeholder="Tell me a bit about your project, goals, and timeline…" name="message" /></Field>
 
               <button type="submit" disabled={sent} className="w-full inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-gradient-gold text-primary-foreground font-medium shadow-glow hover:scale-[1.02] transition disabled:opacity-70">
                 {sent ? (<><Check size={16} /> Message sent — talk soon!</>) : (<>Send Message <Send size={16} /></>)}

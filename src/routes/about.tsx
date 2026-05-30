@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Award, Target, Heart } from "lucide-react";
-import aboutImg from "@/assets/about.jpg";
+import aboutImg from "@/assets/about.png";
 import { Reveal } from "@/components/site/Reveal";
 
 export const Route = createFileRoute("/about")({
@@ -44,9 +44,17 @@ function AboutPage() {
               </Link>
             </div>
           </Reveal>
+
+          {/* Updated image styling */}
           <Reveal delay={150}>
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden border border-border shadow-elegant">
-              <img src={aboutImg} alt="Elizabetho portrait" loading="lazy" width={1024} height={1280} className="w-full h-full object-cover" />
+            <div className="relative overflow-hidden border border-border shadow-elegant rounded-2xl">
+              <img
+                src={aboutImg}
+                alt="Elizabetho portrait"
+                loading="lazy"
+                className="w-full h-full object-cover opacity-90 mix-blend-multiply"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
             </div>
           </Reveal>
         </div>
